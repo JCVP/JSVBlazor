@@ -1,0 +1,122 @@
+﻿@* @page "/empleador"
+@inject IEmpleadorRepository _empleadorRepository
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Lista de empleadores</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="empleador/create" class="btn btn-primary form-control">Nuevo Empleador </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Empleadores.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Empleadores)
+                    {
+                        <tr>
+                            <td>
+                                @emp.Nombre
+                            </td>
+
+                            <td>
+                                <NavLink href="@($"empleador/edit/{emp.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(emp.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay empleadores cargados.</p>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<EmpleadorDTO> Empleadores { get; set; } = new List<EmpleadorDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteEmpleadorId { get; set; } = 0;
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationState;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            var uri = new Uri(_navigationManager.Uri);
+            _navigationManager.NavigateTo($"/identity/account/login?returnUrl={uri.LocalPath}", forceLoad: true);
+        }
+        else
+        {
+            if (!authState.User.IsInRole(JSVProject_Common.SD.Role_Admin))
+            {
+                _navigationManager.NavigateTo("/ErrorPage");
+            }
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadEmpleadores();
+        }
+    }
+
+    private async Task LoadEmpleadores()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Empleadores = await _empleadorRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteEmpleadorId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteEmpleadorId != 0)
+        {
+            //delete
+            EmpleadorDTO empleador = await _empleadorRepository.Get(DeleteEmpleadorId);
+
+            await _empleadorRepository.Delete(DeleteEmpleadorId);
+            await _jsRuntime.ToastrSuccess("El empleador se elimino correctamente");
+            await LoadEmpleadores();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+}
+*@

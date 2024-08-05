@@ -1,0 +1,49 @@
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.deps.json
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfoInputs.cache
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfo.cs
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.csproj.CoreCompileInputs.cache
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\refint\JSVProject_Common.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Common\obj\Debug\net6.0\ref\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.deps.json
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.csproj.AssemblyReference.cache
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfoInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfo.cs
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.csproj.CoreCompileInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.sourcelink.json
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\refint\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Common\obj\Debug\net6.0\ref\JSVProject_Common.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.deps.json
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.csproj.AssemblyReference.cache
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfoInputs.cache
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfo.cs
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.csproj.CoreCompileInputs.cache
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.sourcelink.json
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\refint\JSVProject_Common.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Common\obj\Debug\net6.0\ref\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.deps.json
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\bin\Debug\net6.0\JSVProject_Common.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfoInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.AssemblyInfo.cs
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.csproj.CoreCompileInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.sourcelink.json
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\refint\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\JSVProject_Common.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Common\obj\Debug\net6.0\ref\JSVProject_Common.dll

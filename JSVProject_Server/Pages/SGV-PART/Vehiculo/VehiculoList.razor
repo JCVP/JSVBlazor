@@ -1,0 +1,121 @@
+﻿@page "/Vehiculo"
+@inject IVehiculoRepository _vehiculoRepository
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Lista de Vehiculos</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="Vehiculo/create" class="btn btn-primary form-control">Nuevo Vehiculo </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Vehiculo.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var per in Vehiculo)
+                    {
+                        <tr>
+                            <td>
+                                @per.Dominio
+                            </td>
+
+                            <td>
+                                <NavLink href="@($"Vehiculo/edit/{per.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(per.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay Vehiculo cargados.</p>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<VehiculoDTO> Vehiculo { get; set; } = new List<VehiculoDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteVehiculoId { get; set; } = 0;
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationState;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            var uri = new Uri(_navigationManager.Uri);
+            _navigationManager.NavigateTo($"/identity/account/login?returnUrl={uri.LocalPath}", forceLoad: true);
+        }
+        else
+        {
+            if (!authState.User.IsInRole(JSVProject_Common.SD.Role_Admin))
+            {
+                _navigationManager.NavigateTo("/ErrorPage");
+            }
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadVehiculos();
+        }
+    }
+
+    private async Task LoadVehiculos()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Vehiculo = await _vehiculoRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteVehiculoId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteVehiculoId != 0)
+        {
+            //delete
+            VehiculoDTO vehiculo = await _vehiculoRepository.Get(DeleteVehiculoId);
+
+            await _vehiculoRepository.Delete(DeleteVehiculoId);
+            await _jsRuntime.ToastrSuccess("el vehiculo se elimino correctamente");
+            await LoadVehiculos();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+}

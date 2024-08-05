@@ -1,0 +1,208 @@
+﻿@page "/valdaño/create"
+@page "/valdaño/edit/{id:int}"
+@inject IValDañoRepository _valdañosRepository
+@inject ILocalidadRepository _localidadRepository
+@inject IProvinciaRepository _provinciaRepository
+@inject NavigationManager _navigationManager
+
+@attribute [Authorize]
+@using Syncfusion
+@using Syncfusion.Blazor.DropDowns
+
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title ValDaño</h3>
+
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="/images/loading.gif">
+            </div>
+        }
+        else
+        { 
+            <EditForm Model="ValDaño" OnValidSubmit="UpsertValDaño">
+                <DataAnnotationsValidator/>
+                @*<ValidationSummary/>*@
+                   <div class="row pt-3">
+              <div class="form-group">
+                    <label>Fecha Derivado</label>
+                    <InputDate @bind-Value="ValDaño.FechaDerivado" class="form-control"></InputDate>
+                    <ValidationMessage For="()=>ValDaño.FechaDerivado"></ValidationMessage>
+               
+                
+                @*    <div class="form-group">
+                    <label>Provincia</label>
+                    <InputSelect @bind-Value="ValDaño.ProvinciaId" class="form-select">
+                        <option value="0" disabled="disabled" selected>--Seleccione una Provincia--</option>
+                        @foreach (var pro in Provincias)
+                        {
+                            <option value="@pro.Id">@pro.Descripcion</option>
+                        }
+
+                    </InputSelect>
+                    <ValidationMessage For="()=>ValDaño.ProvinciaId"></ValidationMessage>
+                </div>*@
+               
+               <div class="form-group col-6">
+                        <label>Localidad</label>
+                <InputSelect @bind-Value="ValDaño.LocalidadId" class="form-select">
+                            <option value="0" disabled="disabled" selected>--Seleccione una Localidad--</option>
+                            @foreach (var loc in Localidades)
+                            {
+                                <option value="@loc.Id">@loc.Descripcion</option>
+                            }
+
+                        </InputSelect>
+                    <ValidationMessage For="()=>ValDaño.LocalidadId"></ValidationMessage>
+                  </div>
+                    </div>
+                </div>
+                <h2>Cliente</h2>
+                   <div class="row pt-3">
+                <div class="form-group">
+                    <label>RazonSocial</label>
+                    <InputText @bind-Value="ValDaño.RazonSocial" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.RazonSocial"></ValidationMessage>
+                </div>
+
+                    </div>
+                <div class="form-group">
+                    <label>CUIT</label>
+                    <InputText @bind-Value="ValDaño.CUIT" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.CUIT"></ValidationMessage>
+                </div>
+                  <div class="row pt-3">
+                <div class="form-group">
+                    <label>Email</label>
+                    <InputText @bind-Value="ValDaño.Email" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.Email"></ValidationMessage>
+                </div>
+                        </div>
+                
+                <div class="form-group">
+                    <label>Telefono</label>
+                    <InputText @bind-Value="ValDaño.Telefono" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.Telefono"></ValidationMessage>
+                </div>
+                   <div class="row pt-3">
+                <div class="form-group">
+                    <label>Domicilio</label>
+                    <InputText @bind-Value="ValDaño.Domicilio" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.Domicilio"></ValidationMessage>
+                </div>
+                            </div>
+                            <h2>Vehiculo</h2>
+                   <div class="row pt-3">
+                <div class="form-group">
+                    <label>Tipo de Vehiculo</label>
+                    <InputText @bind-Value="ValDaño.TipoVh" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.TipoVh"></ValidationMessage>
+                </div>
+                                   
+                
+                <div class="form-group">
+                    <label>Dominio</label>
+                    <InputText @bind-Value="ValDaño.Dominio" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.Dominio"></ValidationMessage>
+                                    </div>
+                                </div>
+                   <div class="row pt-3">
+                <div class="form-group">
+                    <label>VIN</label>
+                    <InputText @bind-Value="ValDaño.Nvin" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.Nvin"></ValidationMessage>
+                </div>
+                                        
+                
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <InputText @bind-Value="ValDaño.Obs" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.Obs"></ValidationMessage>
+                </div>
+                                    </div>
+              @*  <div class="form-group">
+                    <label>Ubicacion PC</label>
+                    <InputText @bind-Value="ValDaño.UbicacionPC" class="form-control"></InputText>
+                    <ValidationMessage For="()=>ValDaño.UbicacionPC"></ValidationMessage>
+                    <button class="btn btn-primary">@Title </button>
+                    <NavLink href="D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\">Abrir Carpeta</NavLink>
+
+            </div>*@
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="siniestro" class="btn btn-secondary">Volver</NavLink>
+                </div>
+            </EditForm>
+        } 
+    </div>
+</div>
+
+@code {
+    [Parameter]
+
+    public int Id { get; set; }
+    private ValDañoDTO ValDaño { get; set; } = new ValDañoDTO(){FechaDerivado = DateTime.Now    };
+    private IEnumerable<LocalidadDTO> Localidades { get; set; } = new List<LocalidadDTO>();
+   // private IEnumerable<ProvinciaDTO> Provincias { get; set; } = new List<ProvinciaDTO>();
+    private string Title { get; set; } = "Nuevo";
+    public bool IsLoading { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Id == 0)
+            {
+                //create
+                IsLoading = false;
+            }
+            else
+            {
+                //update
+                Title = "Guardar";
+                await LoadValDaño();
+            }
+        }
+
+    }
+
+    private async Task LoadValDaño()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Localidades = await _localidadRepository.GetAll();
+        //Provincias = await _provinciaRepository.GetAll();
+        
+
+        if (Id != 0)
+        {
+            //update
+            Title = "Update";
+            ValDaño = await _valdañosRepository.Get(Id);
+        }
+
+        IsLoading = false;
+
+
+        StateHasChanged();
+    }
+    private async Task UpsertValDaño()
+    {
+        if (ValDaño.Id == 0)
+        {
+            //create
+            await _valdañosRepository.Create(ValDaño);
+        }
+        else
+        {
+            //update
+            await _valdañosRepository.Update(ValDaño);
+        }
+        _navigationManager.NavigateTo("valdaño");
+
+
+    }
+
+}
+

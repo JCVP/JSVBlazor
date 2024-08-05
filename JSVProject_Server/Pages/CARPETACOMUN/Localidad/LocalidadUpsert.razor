@@ -1,0 +1,103 @@
+﻿@page "/localidad/create"
+@page "/localidad/edit/{id:int}"
+@inject IProvinciaRepository _provinciaRepository
+@inject ILocalidadRepository _localidadRepository
+@inject NavigationManager _navigationManager
+@*@inject IJSRuntime _jsRuntime*@
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Localidad</h3>
+
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="/images/loading.gif">
+            </div>
+        }
+        else
+        {
+            <EditForm Model="Localidad" OnValidSubmit="UpsertLocalidad">
+                <DataAnnotationsValidator />
+                @*<ValidationSummary/>*@
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <InputText @bind-Value="Localidad.Descripcion" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Localidad.Descripcion"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Provincia</label>
+                    <InputSelect @bind-Value="Localidad.ProvinciaId" class="form-select">
+                        <option value="0" disabled="disabled" selected>--Seleccione una Provincia--</option>
+                        @foreach (var pro in Provincias)
+                        {
+                            <option value="@pro.Id">@pro.Descripcion</option>
+                        }
+
+                    </InputSelect>
+                    <ValidationMessage For="()=>Localidad.ProvinciaId"></ValidationMessage>
+                </div>
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="localidad" class="btn btn-secondary">Volver</NavLink>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+    private LocalidadDTO Localidad { get; set; } = new LocalidadDTO();
+    private IEnumerable<ProvinciaDTO> Provincias { get; set; } = new List<ProvinciaDTO>();
+    private string Title { get; set; } = "Nueva";
+    public bool IsLoading { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadLocalidad();
+        }
+
+    }
+
+    private async Task LoadLocalidad()
+    {
+        IsLoading=true;
+        StateHasChanged();
+        Provincias = await _provinciaRepository.GetAll();
+        if (Id != 0)
+        {
+            //update
+            Title = "Guardar";
+            Localidad = await _localidadRepository.Get(Id);
+        }
+
+        IsLoading = false;
+        StateHasChanged();
+    }
+    private async Task UpsertLocalidad()
+    {
+        if (Localidad.Id == 0)
+        {
+            //create
+            await _localidadRepository.Create(Localidad);
+            //await _jsRuntime.ToastrSuccess("Product created successfully.");
+        }
+        else
+        {
+            //update
+            await _localidadRepository.Update(Localidad);
+            //await _jsRuntime.ToastrSuccess("Product updated successfully.");
+        }
+        _navigationManager.NavigateTo("localidad");
+
+
+    }
+}
+
+
+

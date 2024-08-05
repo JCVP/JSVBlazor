@@ -1,0 +1,90 @@
+﻿@*
+@page "/empleador/create"
+@page "/empleador/edit/{id:int}"
+@inject IEmpleadorRepository _empleadorRepository
+@inject NavigationManager _navigationManager
+@attribute [Authorize]
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Empleador</h3>
+
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="/images/loading.gif">
+            </div>
+        }
+        else
+        {
+            <EditForm Model="Empleador" OnValidSubmit="UpsertEmpleador">
+                <DataAnnotationsValidator />
+                @*<ValidationSummary/>*@@*
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <InputText @bind-Value="Empleador.Nombre" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Empleador.Nombre"></ValidationMessage>
+                </div>
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="empleador" class="btn btn-secondary">Volver</NavLink>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+
+    private EmpleadorDTO Empleador { get; set; } = new EmpleadorDTO();
+    private string Title { get; set; } = "Nuevo";
+    public bool IsLoading { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Id == 0)
+            {
+                //create
+                IsLoading = false;
+            }
+            else
+            {
+                //update
+                Title = "Guardar";
+                await LoadEmpleador();
+            }
+        }
+
+    }
+
+    private async Task LoadEmpleador()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Empleador = await _empleadorRepository.Get(Id);
+        IsLoading = false;
+        StateHasChanged();
+    }
+    private async Task UpsertEmpleador()
+    {
+        if (Empleador.Id == 0)
+        {
+            //create
+            await _empleadorRepository.Create(Empleador);
+        }
+        else
+        {
+            //update
+            await _empleadorRepository.Update(Empleador);
+        }
+        _navigationManager.NavigateTo("empleador");
+
+
+    }
+}
+
+        *@

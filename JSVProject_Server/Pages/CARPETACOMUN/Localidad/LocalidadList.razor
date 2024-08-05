@@ -1,0 +1,101 @@
+﻿@page "/localidad"
+@inject ILocalidadRepository _localidadRepository
+@inject IJSRuntime _jsRuntime
+
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Localidades</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="localidad/create" class="btn btn-primary form-control">Nueva Localidad </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Localidades.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Descripcion</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var objPro in Localidades)
+                    {
+                        <tr>
+                            <td>
+                                @objPro.Descripcion
+                            </td>
+                            <td>
+                                <NavLink href="@($"localidad/edit/{objPro.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(objPro.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay localidades cargadas.</p>
+            }
+        }
+    </div>
+
+</div>
+
+
+@code {
+    private IEnumerable<LocalidadDTO> Localidades { get; set; } = new List<LocalidadDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteLocalidadId { get; set; } = 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadLocalidades();
+        }
+    }
+
+    private async Task LoadLocalidades()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Localidades = await _localidadRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteLocalidadId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteLocalidadId != 0)
+        {
+            //delete
+            await _localidadRepository.Delete(DeleteLocalidadId);
+            await LoadLocalidades();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+
+}

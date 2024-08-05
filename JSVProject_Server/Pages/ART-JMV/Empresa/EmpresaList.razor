@@ -1,0 +1,121 @@
+﻿@page "/empresa"
+@inject IEmpresaRepository _empresaRepository
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Lista de empleadores</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="empresa/create" class="btn btn-primary form-control">Nueva Empresa </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Empresas.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>RazonSocial</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Empresas)
+                    {
+                        <tr>
+                            <td>
+                                @emp.RazonSocial
+                            </td>
+
+                            <td>
+                                <NavLink href="@($"empresa/edit/{emp.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(emp.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay empleadores cargados.</p>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<EmpresaDTO> Empresas { get; set; } = new List<EmpresaDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteEmpresaId { get; set; } = 0;
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationState;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            var uri = new Uri(_navigationManager.Uri);
+            _navigationManager.NavigateTo($"/identity/account/login?returnUrl={uri.LocalPath}", forceLoad: true);
+        }
+        else
+        {
+            if (!authState.User.IsInRole(JSVProject_Common.SD.Role_Admin))
+            {
+                _navigationManager.NavigateTo("/ErrorPage");
+            }
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadEmpresas();
+        }
+    }
+
+    private async Task LoadEmpresas()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Empresas = await _empresaRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteEmpresaId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteEmpresaId != 0)
+        {
+            //delete
+            EmpresaDTO empresa = await _empresaRepository.Get(DeleteEmpresaId);
+
+            await _empresaRepository.Delete(DeleteEmpresaId);
+            await _jsRuntime.ToastrSuccess("la empresa se elimino correctamente");
+            await LoadEmpresas();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+}

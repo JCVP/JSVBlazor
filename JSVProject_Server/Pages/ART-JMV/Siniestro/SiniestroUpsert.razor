@@ -1,0 +1,181 @@
+﻿@page "/siniestro/create"
+@page "/siniestro/edit/{id:int}"
+@inject ISiniestroRepository _siniestroRepository
+@inject IProvinciaRepository _provinciaRepository
+@inject NavigationManager _navigationManager
+
+@*@inject IProvinciaRepository _provinciaRepository
+@inject ILocalidadRepository _localidadRepository*@
+@attribute [Authorize]
+@using Syncfusion
+@using Syncfusion.Blazor.DropDowns
+
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Siniestro</h3>
+
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="/images/loading.gif">
+            </div>
+        }
+        else
+        {
+            <EditForm Model="Siniestro" OnValidSubmit="UpsertSiniestro">
+                <DataAnnotationsValidator />
+                @*<ValidationSummary/>*@
+                <div class="form-group">
+                    <label>Numero</label>
+                    <InputText @bind-Value="Siniestro.Numero" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Numero"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>FechaDerivado</label>
+                    <InputDate @bind-Value="Siniestro.FechaDerivado" class="form-control"></InputDate>
+                    <ValidationMessage For="()=>Siniestro.FechaDerivado"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>FechaSiniestro</label>
+                    <InputDate @bind-Value="Siniestro.FechaSiniestro" class="form-control"></InputDate>
+                    <ValidationMessage For="()=>Siniestro.FechaSiniestro"></ValidationMessage>
+                </div>
+
+                @*
+            <div class="form-group">
+            <label>Localidad</label>
+            <InputSelect @bind-Value="Siniestro.LocalidadId" class="form-select">
+            <option value="0" disabled="disabled" selected>--Seleccione una Localidad--</option>
+            @foreach (var pro in Localidades)
+            {
+            <option value="@pro.Id">@pro.Descripcion</option>
+            }
+
+            </InputSelect>
+            <ValidationMessage For="()=>Siniestro.LocalidadId"></ValidationMessage>
+            </div>
+            *@
+
+                <div class="form-group">
+                    <label>Provincia</label>
+                    <InputSelect @bind-Value="Siniestro.ProvinciaId" class="form-select">
+                        <option value="0" disabled="disabled" selected>--Seleccione una Provincia--</option>
+                        @foreach (var pro in Provincias)
+                        {
+                            <option value="@pro.Id">@pro.Descripcion</option>
+                        }
+
+                    </InputSelect>
+                    <ValidationMessage For="()=>Siniestro.ProvinciaId"></ValidationMessage>
+                </div>
+
+                <div class="form-group">
+                    <label>Empresa</label>
+                    <InputText @bind-Value="Siniestro.Empresa" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Empresa"></ValidationMessage>
+                    <a class="btn btn-primary" href="/empresa/create" target="_blank"> Crear empresa</a>
+                    <a class="btn btn-primary" href="/empresa" target="_blank"> lista de empresas</a>
+                </div>
+
+                @*  <div class="form-group">
+            <label>Empresa</label>
+            <InputText @bind-Value="Siniestro.Empresa" class="form-control"> </InputText>
+            <ValidationMessage For="()=>Siniestro.Empresa"></ValidationMessage>
+            <SfDropDownList DataSource="@Empresa" TItem="Empresa" TValue="string"><DropDownListFieldSettings Text="RazonSocial" Value="Empresa.Id"></DropDownListFieldSettings></SfDropDownList>
+            <a class="btn btn-primary" href="/empresa/create" target="_blank"> Crear empresa</a>
+            <a class="btn btn-primary" href="/empresa" target="_blank"> lista de empresas</a>
+            </div>
+            *@
+                <div class="form-group">
+                    <label>Nombre del empleado</label>
+                    <InputText @bind-Value="Siniestro.Nombre" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Nombre"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>DNI</label>
+                    <InputText @bind-Value="Siniestro.DNI" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.DNI"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Domiclio</label>
+                    <InputText @bind-Value="Siniestro.Domicilio" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Domicilio"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Telefono</label>
+                    <InputText @bind-Value="Siniestro.Telefono" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Telefono"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <InputText @bind-Value="Siniestro.Email" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Email"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <InputText @bind-Value="Siniestro.Obs" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Obs"></ValidationMessage>
+                </div>
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="siniestro" class="btn btn-secondary">Volver</NavLink>
+                </div>
+
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+    private SiniestroDTO Siniestro { get; set; } = new SiniestroDTO() { FechaSiniestro = DateTime.Now };
+
+    private IEnumerable<ProvinciaDTO> Provincias { get; set; } = new List<ProvinciaDTO>();
+    private string Title { get; set; } = "Nuevo";
+    public bool IsLoading { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadSiniestro();
+        }
+
+    }
+
+    private async Task LoadSiniestro()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Provincias = await _provinciaRepository.GetAll();
+        if (Id != 0)
+        {
+            //update
+            Title = "Guardar";
+            Siniestro = await _siniestroRepository.Get(Id);
+        }
+
+        IsLoading = false;
+        StateHasChanged();
+    }
+    private async Task UpsertSiniestro()
+    {
+        if (Siniestro.Id == 0)
+        {
+            //create
+            await _siniestroRepository.Create(Siniestro);
+        }
+        else
+        {
+            //update
+            await _siniestroRepository.Update(Siniestro);
+        }
+        _navigationManager.NavigateTo("siniestro");
+
+
+    }
+
+}
+

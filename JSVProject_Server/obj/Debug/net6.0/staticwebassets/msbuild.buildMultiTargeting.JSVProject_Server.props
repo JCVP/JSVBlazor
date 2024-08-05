@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\JSVProject_Server.props" />
+</Project>

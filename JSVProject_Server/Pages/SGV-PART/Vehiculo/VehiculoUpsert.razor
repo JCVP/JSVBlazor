@@ -1,0 +1,109 @@
+﻿@page "/Vehiculo/create"
+@page "/Vehiculo/edit/{id:int}"
+@inject IVehiculoRepository _vehiculoRepository
+@inject NavigationManager _navigationManager
+@attribute [Authorize]
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Vehiculo</h3>
+
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="/images/loading.gif">
+            </div>
+        }
+        else
+        {
+            <EditForm Model="Vehiculo" OnValidSubmit="UpsertVehiculo">
+                <DataAnnotationsValidator />
+                @*<ValidationSummary/>*@
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <InputText @bind-Value="Vehiculo.Tipo" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Vehiculo.Tipo"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Dominio</label>
+                    <InputText @bind-Value="Vehiculo.Dominio" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Vehiculo.Dominio"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Numero Vin</label>
+                    <InputText @bind-Value="Vehiculo.Nvin" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Vehiculo.Nvin"></ValidationMessage>
+                </div>
+            
+               @* <div class="form-group">
+                    <label>Empresa</label>
+                    <InputText @bind-Value="Siniestro.Empresa" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Siniestro.Empresa"></ValidationMessage>
+                </div>*@
+                <div class="form-group">
+                    <label>Marca</label>
+                    <InputText @bind-Value="Vehiculo.Marca" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Vehiculo.Marca"></ValidationMessage>
+                </div>
+              
+                
+            
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+
+    private VehiculoDTO Vehiculo { get; set; } = new VehiculoDTO();
+    private string Title { get; set; } = "Nuevo";
+    public bool IsLoading { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Id == 0)
+            {
+                //create
+                IsLoading = false;
+            }
+            else
+            {
+                //update
+                Title = "Guardar";
+                await LoadVehiculo();
+            }
+        }
+
+    }
+
+    private async Task LoadVehiculo()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Vehiculo = await _vehiculoRepository.Get(Id);
+        IsLoading = false;
+        StateHasChanged();
+    }
+    private async Task UpsertVehiculo()
+    {
+        if (Vehiculo.Id == 0)
+        {
+            //create
+            await _vehiculoRepository.Create(Vehiculo);
+        }
+        else
+        {
+            //update
+            await _vehiculoRepository.Update(Vehiculo);
+        }
+        _navigationManager.NavigateTo("vehiculo");
+
+
+    }
+
+}
+
