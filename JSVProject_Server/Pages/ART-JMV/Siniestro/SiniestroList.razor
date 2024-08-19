@@ -1,0 +1,121 @@
+﻿@page "/siniestro"
+@inject ISiniestroRepository _siniestroRepository
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Lista de siniestros</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="siniestro/create" class="btn btn-primary form-control">Nuevo siniestro </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Siniestros.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Siniestros)
+                    {
+                        <tr>
+                            <td>
+                                @emp.Nombre
+                            </td>
+
+                            <td>
+                                <NavLink href="@($"siniestro/edit/{emp.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(emp.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay siniestros cargados.</p>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<SiniestroDTO> Siniestros { get; set; } = new List<SiniestroDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteSiniestroId { get; set; } = 0;
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationState;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            var uri = new Uri(_navigationManager.Uri);
+            _navigationManager.NavigateTo($"/identity/account/login?returnUrl={uri.LocalPath}", forceLoad: true);
+        }
+        else
+        {
+            if (!authState.User.IsInRole(JSVProject_Common.SD.Role_Admin))
+            {
+                _navigationManager.NavigateTo("/ErrorPage");
+            }
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadSiniestros();
+        }
+    }
+
+    private async Task LoadSiniestros()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Siniestros = await _siniestroRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteSiniestroId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteSiniestroId != 0)
+        {
+            //delete
+            SiniestroDTO siniestro = await _siniestroRepository.Get(DeleteSiniestroId);
+
+            await _siniestroRepository.Delete(DeleteSiniestroId);
+            await _jsRuntime.ToastrSuccess("el siniestro se elimino correctamente");
+            await LoadSiniestros();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+}

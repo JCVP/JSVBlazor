@@ -1,0 +1,100 @@
+﻿@page "/provincia"
+@inject IProvinciaRepository _provinciaRepository
+@inject IJSRuntime _jsRuntime
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Provincias</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="provincia/create" class="btn btn-primary form-control">Nueva Provincia </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (Provincias.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Descripcion</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var objPro in Provincias)
+                    {
+                        <tr>
+                            <td>
+                                @objPro.Descripcion
+                            </td>
+                            <td>
+                                <NavLink href="@($"provincia/edit/{objPro.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(objPro.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay provincias cargadas.</p>
+            }
+        }
+    </div>
+
+</div>
+
+
+@code {
+    private IEnumerable<ProvinciaDTO> Provincias { get; set; } = new List<ProvinciaDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteProvinciaId { get; set; } = 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadProvincias();
+        }
+    }
+
+    private async Task LoadProvincias()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Provincias = await _provinciaRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteProvinciaId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteProvinciaId != 0)
+        {
+            //delete
+            await _provinciaRepository.Delete(DeleteProvinciaId);
+            await LoadProvincias();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+
+}

@@ -1,0 +1,89 @@
+﻿@page "/provincia/create"
+@page "/provincia/edit/{id:int}"
+@inject IProvinciaRepository _provinciaRepository
+@inject NavigationManager _navigationManager
+@attribute [Authorize]
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Provincia</h3>
+
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="text-center">
+                <img src="/images/loading.gif">
+            </div>
+        }
+        else
+        {
+            <EditForm Model="Provincia" OnValidSubmit="UpsertProvincia">
+                <DataAnnotationsValidator />
+                @*<ValidationSummary/>*@
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <InputText @bind-Value="Provincia.Descripcion" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Provincia.Descripcion"></ValidationMessage>
+                </div>
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="provincia" class="btn btn-secondary">Volver</NavLink>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+
+    private ProvinciaDTO Provincia { get; set; } = new ProvinciaDTO();
+    private string Title { get; set; } = "Nueva";
+    public bool IsLoading { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Id == 0)
+            {
+                //create
+                IsLoading = false;
+            }
+            else
+            {
+                //update
+                Title = "Guardar";
+                await LoadProvincia();
+            }
+        }
+
+    }
+
+    private async Task LoadProvincia()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        Provincia = await _provinciaRepository.Get(Id);
+        IsLoading = false;
+        StateHasChanged();
+    }
+    private async Task UpsertProvincia()
+    {
+        if (Provincia.Id == 0)
+        {
+            //create
+            await _provinciaRepository.Create(Provincia);
+        }
+        else
+        {
+            //update
+            await _provinciaRepository.Update(Provincia);
+        }
+        _navigationManager.NavigateTo("provincia");
+
+
+    }
+}
+
+
