@@ -1,0 +1,78 @@
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.deps.json
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.AssemblyReference.cache
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfoInputs.cache
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfo.cs
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.CoreCompileInputs.cache
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.CopyComplete
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\refint\JSVProject_Business.dll
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.pdb
+C:\Users\mario\source\repos\JSVProject\JSVProject_Business\obj\Debug\net6.0\ref\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.deps.json
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.AssemblyReference.cache
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfoInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfo.cs
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.CoreCompileInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.sourcelink.json
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProje.04316BC4.Up2Date
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\refint\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.pdb
+D:\Program Files (x86)\apps de VS\JSVProject\JSVProject_Business\obj\Debug\net6.0\ref\JSVProject_Business.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.deps.json
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.AssemblyReference.cache
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfoInputs.cache
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfo.cs
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.CoreCompileInputs.cache
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.sourcelink.json
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.CopyComplete
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\refint\JSVProject_Business.dll
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.pdb
+C:\Users\mario\Downloads\JSVProject-20240325T210239Z-001\JSVProject\JSVProject_Business\obj\Debug\net6.0\ref\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.deps.json
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Business.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Common.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_DataAccess.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\bin\Debug\net6.0\JSVProject_Models.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.AssemblyReference.cache
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfoInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.AssemblyInfo.cs
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.csproj.CoreCompileInputs.cache
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProje.04316BC4.Up2Date
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\refint\JSVProject_Business.dll
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\JSVProject_Business.pdb
+D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Business\obj\Debug\net6.0\ref\JSVProject_Business.dll

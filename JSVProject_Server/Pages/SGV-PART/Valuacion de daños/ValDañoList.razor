@@ -1,0 +1,121 @@
+﻿@page "/valdaño"
+@inject IValDañoRepository _valdañoRepository
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+
+<_DeleteConfirmation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDelete_Click"></_DeleteConfirmation>
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Lista de Valuaciones de daños</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="valdaño/create" class="btn btn-primary form-control">Nueva Valuacion de daños </a>
+    </div>
+    <div class="col-12 p-3">
+        @if (ValDaños.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in ValDaños)
+                    {
+                        <tr>
+                            <td>
+                                @emp.Dominio
+                            </td>
+
+                            <td>
+                                <NavLink href="@($"valdaño/edit/{emp.Id}")" class="btn-primary btn">Editar</NavLink>
+                                <button class="btn btn-danger" @onclick="()=>HandleDelete(emp.Id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                //loading gif
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                </div>
+            }
+            else
+            {
+                //no records
+                <p>No hay Valuaciones cargados.</p>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<ValDañoDTO> ValDaños { get; set; } = new List<ValDañoDTO>();
+    public bool IsLoading { get; set; }
+    private int DeleteValDañoId { get; set; } = 0;
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationState;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            var uri = new Uri(_navigationManager.Uri);
+            _navigationManager.NavigateTo($"/identity/account/login?returnUrl={uri.LocalPath}", forceLoad: true);
+        }
+        else
+        {
+            if (!authState.User.IsInRole(JSVProject_Common.SD.Role_Admin))
+            {
+                _navigationManager.NavigateTo("/ErrorPage");
+            }
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadValDaños();
+        }
+    }
+
+    private async Task LoadValDaños()
+    {
+        IsLoading = true;
+        StateHasChanged();
+        ValDaños = await _valdañoRepository.GetAll();
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteValDañoId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+    }
+
+    public async Task ConfirmDelete_Click(bool isConfirmed)
+    {
+        IsLoading = true;
+        if (isConfirmed && DeleteValDañoId != 0)
+        {
+            //delete
+            ValDañoDTO ValDaño = await _valdañoRepository.Get(DeleteValDañoId);
+
+            await _valdañoRepository.Delete(DeleteValDañoId);
+            await _jsRuntime.ToastrSuccess("la valuacion de daños se elimino correctamente");
+            await LoadValDaños();
+            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+        IsLoading = false;
+    }
+}
