@@ -9,6 +9,8 @@ namespace JSVProject_Models
         
         public DateTime FechaDerivado { get; set; }
 
+        public string EstadoGestion { get; set; }
+
         //  public int? ProvinciaId { get; set; }
         // public virtual ProvinciaDTO Provincia { get; set; }
 
@@ -24,6 +26,8 @@ namespace JSVProject_Models
         public string TipoVh { get; set; }
         public string Dominio { get; set; }
         public string Nvin { get; set; }
+
+        public string GestorEIR { get; set; }
         public string Obs { get; set; }
         //public string UbicacionPC { get; set; } //
     }

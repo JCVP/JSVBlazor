@@ -62,7 +62,6 @@ D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataA
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\JSVProject_DataAccess.AssemblyInfoInputs.cache
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\JSVProject_DataAccess.AssemblyInfo.cs
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\JSVProject_DataAccess.csproj.CoreCompileInputs.cache
-D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\JSVProject_DataAccess.sourcelink.json
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\JSVProje.399F092F.Up2Date
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\JSVProject_DataAccess.dll
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_DataAccess\obj\Debug\net6.0\refint\JSVProject_DataAccess.dll

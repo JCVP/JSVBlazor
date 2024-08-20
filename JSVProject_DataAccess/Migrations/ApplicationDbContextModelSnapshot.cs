@@ -268,8 +268,16 @@ namespace JSVProject_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EstadoGestion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("FechaDerivado")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("GestorEIR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("LocalidadId")
                         .IsRequired()

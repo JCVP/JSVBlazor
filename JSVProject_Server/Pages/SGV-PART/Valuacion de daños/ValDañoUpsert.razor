@@ -2,7 +2,6 @@
 @page "/valdaño/edit/{id:int}"
 @inject IValDañoRepository _valdañosRepository
 @inject ILocalidadRepository _localidadRepository
-@inject IProvinciaRepository _provinciaRepository
 @inject NavigationManager _navigationManager
 
 @attribute [Authorize]
@@ -30,7 +29,7 @@
                     <label>Fecha Derivado</label>
                     <InputDate @bind-Value="ValDaño.FechaDerivado" class="form-control"></InputDate>
                     <ValidationMessage For="()=>ValDaño.FechaDerivado"></ValidationMessage>
-               
+                       
                 
                 @*    <div class="form-group">
                     <label>Provincia</label>
@@ -43,8 +42,14 @@
 
                     </InputSelect>
                     <ValidationMessage For="()=>ValDaño.ProvinciaId"></ValidationMessage>
-                </div>*@
-               
+                    </div>*@
+                    </div>
+                        <div class="row pt-3">
+                            <div class="form-group">
+                                <label>Estado de gestion</label>
+                                <InputText @bind-Value="ValDaño.EstadoGestion" class="form-control"></InputText>
+                                <ValidationMessage For="()=>ValDaño.EstadoGestion"></ValidationMessage>
+                            </div>
                <div class="form-group col-6">
                         <label>Localidad</label>
                 <InputSelect @bind-Value="ValDaño.LocalidadId" class="form-select">
@@ -114,8 +119,13 @@
                     <InputText @bind-Value="ValDaño.Nvin" class="form-control"></InputText>
                     <ValidationMessage For="()=>ValDaño.Nvin"></ValidationMessage>
                 </div>
-                                        
-                
+                </div>
+                    <div class="row pt-3">
+                        <div class="form-group">
+                            <label>GestorEIR</label>
+                            <InputText @bind-Value="ValDaño.GestorEIR" class="form-control"></InputText>
+                            <ValidationMessage For="()=>ValDaño.GestorEIR"></ValidationMessage>
+                        </div>
                 <div class="form-group">
                     <label>Observaciones</label>
                     <InputText @bind-Value="ValDaño.Obs" class="form-control"></InputText>
@@ -130,6 +140,8 @@
                     <NavLink href="D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\">Abrir Carpeta</NavLink>
 
             </div>*@
+
+
                 <div class="form-group py-2">
                     <button class="btn btn-primary">@Title</button>
                     <NavLink href="siniestro" class="btn btn-secondary">Volver</NavLink>
@@ -152,17 +164,9 @@
     {
         if (firstRender)
         {
-            if (Id == 0)
-            {
-                //create
-                IsLoading = false;
-            }
-            else
-            {
-                //update
-                Title = "Guardar";
+            
                 await LoadValDaño();
-            }
+            
         }
 
     }

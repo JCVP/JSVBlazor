@@ -298,6 +298,7 @@ namespace JSVProject_DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaDerivado = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EstadoGestion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LocalidadId = table.Column<int>(type: "int", nullable: false),
                     RazonSocial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CUIT = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -307,6 +308,7 @@ namespace JSVProject_DataAccess.Migrations
                     TipoVh = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dominio = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nvin = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GestorEIR = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Obs = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
