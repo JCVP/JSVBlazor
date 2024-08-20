@@ -43,7 +43,6 @@ D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Model
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\JSVProject_Models.AssemblyInfoInputs.cache
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\JSVProject_Models.AssemblyInfo.cs
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\JSVProject_Models.csproj.CoreCompileInputs.cache
-D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\JSVProject_Models.sourcelink.json
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\JSVProject_Models.dll
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\refint\JSVProject_Models.dll
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Models\obj\Debug\net6.0\JSVProject_Models.pdb

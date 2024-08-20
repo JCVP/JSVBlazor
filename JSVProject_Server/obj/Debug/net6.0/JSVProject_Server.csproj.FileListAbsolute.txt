@@ -1224,7 +1224,6 @@ D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Serve
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\JSVProject_Server.MvcApplicationPartsAssemblyInfo.cache
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\JSVProject_Server.RazorAssemblyInfo.cache
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\JSVProject_Server.RazorAssemblyInfo.cs
-D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\JSVProject_Server.sourcelink.json
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\staticwebassets.build.json
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\staticwebassets.development.json
 D:\Program Files (x86)\apps de VS\JSVProject (Mario)\JSVProject\JSVProject_Server\obj\Debug\net6.0\staticwebassets\msbuild.JSVProject_Server.Microsoft.AspNetCore.StaticWebAssets.props
